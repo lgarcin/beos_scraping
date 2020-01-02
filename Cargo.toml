@@ -1,0 +1,14 @@
+[package]
+name = 'beos_scraping'
+version = '0.1.0'
+authors = ['lgarcin <laurent.garcin@gmail.com>']
+edition = '2018'
+
+[dependencies]
+select = '0.4.3'
+clipboard = '0.5.0'
+alerts = '0.1.1'
+
+[dependencies.reqwest]
+version = '0.10.0'
+features = ['blocking']
