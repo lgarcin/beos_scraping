@@ -86,9 +86,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     info.reverse();
 
     let mut exo = String::new();
-    exo += r"\begin{exo}{}{";
+    exo += r"\begin{exo}[comment=";
     exo += &info.join(" ");
-    exo += "}\n";
+    exo += "]\n";
 
     for node in document.find(Class("tex2jax")) {
         exo += &parse(node);
