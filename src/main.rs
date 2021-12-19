@@ -3,7 +3,8 @@ use clipboard::{ClipboardContext, ClipboardProvider};
 use regex::{Error, Regex};
 use select::document::Document;
 use select::node::Node;
-use select::predicate::Class;
+use select::predicate::Predicate;
+use select::predicate::{Class, Name, Text};
 use std::env;
 
 const EXO_SEPARATOR: &str = "-----";
@@ -80,7 +81,7 @@ fn parse_node(node: &Node) -> String {
 
 fn parse_document(document: &Document) -> String {
     let mut parsed_document = String::new();
-    for node in document.find(Class("tex2jax")) {
+    for node in document.find(Class("latex")) {
         parsed_document += &parse_node(&node);
     }
 
@@ -92,10 +93,10 @@ fn parse_document(document: &Document) -> String {
 
 fn preambule(document: &Document) -> String {
     let mut info = document
-        .find(Class("field-label"))
+        .find(Name("div").child(Name("div")).child(Name("p")).child(Text))
         .into_selection()
         .iter()
-        .filter_map(|node| node.next())
+        // .filter_map(|node| node.next())
         .take(3)
         .map(|node| node.text())
         .collect::<Vec<_>>();
