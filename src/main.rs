@@ -98,7 +98,7 @@ fn preambule(document: &Document) -> String {
         .iter()
         // .filter_map(|node| node.next())
         .take(3)
-        .map(|node| node.text())
+        .map(|node| node.text().trim().to_owned())
         .collect::<Vec<_>>();
     info.reverse();
 
