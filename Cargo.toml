@@ -1,15 +1,15 @@
 [package]
 name = 'beos_scraping'
-version = '0.1.0'
+version = '0.2.0'
 authors = ['lgarcin <laurent.garcin@gmail.com>']
 edition = '2018'
 
 [dependencies]
-regex = '1.5.4'
+regex = '1.5.5'
 select = '0.5.0'
 clipboard = '0.5.0'
 alerts = '0.1.1'
 
 [dependencies.reqwest]
-version = '0.11.4'
+version = '0.11.10'
 features = ['blocking']
