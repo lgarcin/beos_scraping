@@ -5,7 +5,7 @@ authors = ['lgarcin <laurent.garcin@gmail.com>']
 edition = '2018'
 
 [dependencies]
-regex = '1.5.5'
+regex = '1.5.6'
 select = '0.5.0'
 clipboard = '0.5.0'
 alerts = '0.1.1'
