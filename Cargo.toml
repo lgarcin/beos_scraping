@@ -5,11 +5,11 @@ authors = ['lgarcin <laurent.garcin@gmail.com>']
 edition = '2018'
 
 [dependencies]
-regex = '1.5.6'
-select = '0.5.0'
+regex = '1.8.3'
+select = '0.6.0'
 clipboard = '0.5.0'
 alerts = '0.1.1'
 
 [dependencies.reqwest]
-version = '0.11.10'
+version = '0.11.18'
 features = ['blocking']
