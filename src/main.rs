@@ -5,7 +5,7 @@ use select::document::Document;
 use select::node::Node;
 use select::predicate::Predicate;
 use select::predicate::{Class, Name, Text};
-use std::env;
+use ureq;
 
 const EXO_SEPARATOR: &str = "-----";
 
@@ -127,13 +127,16 @@ fn process_exo(exercice: &str) -> Result<String, Error> {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args: Vec<String> = env::args().collect();
 
-    let nb_exo = &args[1];
-    let url = "https://beos.prepas.org/?q=Epreuve%20Orale%20".to_owned() + nb_exo;
+    let nb_exo = std::env::args().nth(1).unwrap();
 
-    let resp = reqwest::blocking::get(&url)?;
-    let document = Document::from_read(resp)?;
+    let url: String = "https://beos.prepas.org/sujet.php?id=".to_owned() + &nb_exo;
+
+    let resp = ureq::get(&url).call()?;
+    let body = resp.into_reader();
+
+    //let resp = reqwest::blocking::get(url)?;
+    let document = Document::from_read(body)?;
     let preambule = preambule(&document);
 
     let response = parse_document(&document)
