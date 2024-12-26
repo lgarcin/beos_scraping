@@ -8,6 +8,7 @@ use select::predicate::{Class, Name, Text};
 use ureq;
 
 const EXO_SEPARATOR: &str = "-----";
+const BASE_URL: &str = "https://beos.prepas.org/sujet.php?id=";
 
 fn parse_node(node: &Node) -> String {
     let mut parsed_node = String::new();
@@ -128,9 +129,9 @@ fn process_exo(exercice: &str) -> Result<String, Error> {
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    let nb_exo = std::env::args().nth(1).unwrap();
+    let nb_exo = std::env::args().nth(1).expect("Donner le numéro de l'exo");
 
-    let url: String = "https://beos.prepas.org/sujet.php?id=".to_owned() + &nb_exo;
+    let url: String = BASE_URL.to_owned() + &nb_exo;
 
     let resp = ureq::get(&url).call()?;
     let body = resp.into_reader();
@@ -153,3 +154,4 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
